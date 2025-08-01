@@ -1,0 +1,55 @@
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: mongo-demo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+      MONGO_INITDB_DATABASE: demo_db
+    volumes:
+      - mongodb_data:/data/db
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    networks:
+      - mongo-network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/demo_db --quiet
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+
+  app:
+    image: localdemo:latest
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGODB_URI=mongodb://demo_user:demo_password@mongodb:27017/demo_db
+      - MONGODB_HOST=mongodb
+      - MONGODB_PORT=27017
+      - MONGODB_DATABASE=demo_db
+      - MONGODB_USERNAME=demo_user
+      - MONGODB_PASSWORD=demo_password
+      - PORT=3000
+      - NSOLID_APPNAME=mongo-demo-app
+      - NSOLID_TRACING_ENABLED=1
+      - NSOLID_TAGS=demo
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    networks:
+      - mongo-network
+    volumes:
+      - ./public:/app/public:ro
+    command: ["nsolid","./server.js"]
+    logging:
+      driver: "json-file"
+
+volumes:
+  mongodb_data:
+
+networks:
+  mongo-network:
+    driver: bridge
