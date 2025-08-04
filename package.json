@@ -15,6 +15,10 @@
     "docker:up-build": "docker-compose up -d --build",
     "docker:logs": "docker-compose logs -f",
     "docker:mongo-only": "docker-compose up -d mongodb",
+    "build:linux": "./build-and-run.sh",
+    "build:windows": "build-and-run.bat",
+    "build:powershell": "powershell -ExecutionPolicy Bypass -File build-and-run.ps1",
+    "build:cross-platform": "node scripts/build-cross-platform.js",
     "lint": "standard",
     "lint:fix": "standard --fix"
   },

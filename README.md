@@ -15,8 +15,17 @@ A simple Node.js application with dockerized MongoDB, perfect for client demonst
 ## 📋 Prerequisites
 
 - [Docker](https://www.docker.com/get-started) and Docker Compose
-- [Node.js](https://nodejs.org/) (v16 or higher)
+- [Node.js](https://nodejs.org/) (v16 or higher) with N|Solid runtime
 - [npm](https://www.npmjs.com/) (comes with Node.js)
+- **N|Solid SaaS Token** (required for monitoring)
+
+## 🖥️ Platform Support
+
+✅ **Windows** (PowerShell, Command Prompt)  
+✅ **macOS** (Intel & Apple Silicon)  
+✅ **Linux** (All major distributions)
+
+📖 **Detailed platform instructions**: See [PLATFORM_SUPPORT.md](./PLATFORM_SUPPORT.md)
 
 ## 🛠️ Quick Start
 
