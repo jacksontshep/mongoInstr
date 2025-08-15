@@ -8,7 +8,7 @@ fi
 
 # Proceed to build the Docker image
 echo "Building Docker image with NSOLID_SAAS=$NSOLID_SAAS..."
-docker build --build-arg NSOLID_SAAS="$NSOLID_SAAS" -t localdemo:latest .
+docker build --build-arg NSOLID_SAAS="$NSOLID_SAAS" -t mongodemo:latest .
 
 # Run the Docker containers using docker-compose
 docker-compose up -d

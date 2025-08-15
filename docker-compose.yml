@@ -22,7 +22,7 @@ services:
       start_period: 40s
 
   app:
-    image: localdemo:latest
+    image: mongodemo:latest
     ports:
       - "3000:3000"
     environment:

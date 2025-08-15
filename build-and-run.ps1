@@ -17,7 +17,7 @@ if ([string]::IsNullOrEmpty($NsolidSaas)) {
 try {
     # Proceed to build the Docker image
     Write-Host "Building Docker image with NSOLID_SAAS=$NsolidSaas..." -ForegroundColor Green
-    docker build --build-arg NSOLID_SAAS="$NsolidSaas" -t localdemo:latest .
+    docker build --build-arg NSOLID_SAAS="$NsolidSaas" -t mongodemo:latest .
     
     if ($LASTEXITCODE -ne 0) {
         throw "Docker build failed"
